@@ -1,0 +1,56 @@
+﻿@model IEnumerable<GestionPeliculas.Models.Pelicula>
+
+@{
+    ViewData["Title"] = "Películas";
+}
+
+<h2>Películas</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nueva Película</a>
+    <a asp-controller="Actores" asp-action="Index" class="btn btn-secondary">Ver Actores</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Género</th>
+            <th>Año</th>
+            <th>Director</th>
+            <th>Reparto (Actor - Personaje)</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Titulo</td>
+                <td>@item.Genero</td>
+                <td>@item.Anio</td>
+                <td>@item.Director</td>
+                <td>
+                    @if (item.PeliculaActores != null && item.PeliculaActores.Any())
+                    {
+                        <ul class="mb-0">
+                            @foreach (var pa in item.PeliculaActores)
+                            {
+                                <li>@pa.Actor?.Nombre @pa.Actor?.Apellido @(string.IsNullOrEmpty(pa.Personaje) ? "" : $"({pa.Personaje})")</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Sin actores asignados</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="AsignarActor" asp-route-id="@item.PeliculaId" class="btn btn-sm btn-info">Asignar Actor</a>
+                    <a asp-action="Edit" asp-route-id="@item.PeliculaId" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@item.PeliculaId" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

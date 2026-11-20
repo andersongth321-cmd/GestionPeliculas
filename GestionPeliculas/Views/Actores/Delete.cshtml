@@ -1,0 +1,14 @@
+﻿@model GestionPeliculas.Models.Actor
+
+@{
+    ViewData["Title"] = "Eliminar Actor";
+}
+
+<h2>Eliminar Actor</h2>
+<p>¿Seguro que deseas eliminar a <strong>@Model.Nombre @Model.Apellido</strong>?</p>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="ActorId" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

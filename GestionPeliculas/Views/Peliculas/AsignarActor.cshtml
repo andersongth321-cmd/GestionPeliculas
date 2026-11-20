@@ -1,0 +1,25 @@
+﻿@model GestionPeliculas.Models.PeliculaActor
+
+@{
+    ViewData["Title"] = "Asignar Actor";
+    var pelicula = ViewBag.Pelicula as GestionPeliculas.Models.Pelicula;
+}
+
+<h2>Asignar Actor a "@pelicula?.Titulo"</h2>
+
+<form asp-action="AsignarActor" method="post">
+    <input type="hidden" asp-for="PeliculaId" />
+
+    <div class="mb-3">
+        <label asp-for="ActorId" class="form-label">Actor</label>
+        <select asp-for="ActorId" asp-items="ViewBag.Actores" class="form-select"></select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Personaje" class="form-label">Personaje</label>
+        <input asp-for="Personaje" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Asignar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>

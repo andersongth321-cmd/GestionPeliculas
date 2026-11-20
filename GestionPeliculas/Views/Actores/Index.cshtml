@@ -1,0 +1,39 @@
+﻿@model IEnumerable<GestionPeliculas.Models.Actor>
+
+@{
+    ViewData["Title"] = "Actores";
+}
+
+<h2>Actores</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo Actor</a>
+    <a asp-controller="Peliculas" asp-action="Index" class="btn btn-secondary">Ir a Películas</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Nacionalidad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Apellido</td>
+                <td>@item.FechaNacimiento?.ToString("yyyy-MM-dd")</td>
+                <td>@item.Nacionalidad</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ActorId" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@item.ActorId" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

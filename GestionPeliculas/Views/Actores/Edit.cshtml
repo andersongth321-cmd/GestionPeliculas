@@ -1,0 +1,31 @@
+﻿@model GestionPeliculas.Models.Actor
+
+@{
+    ViewData["Title"] = "Editar Actor";
+}
+
+<h2>Editar Actor</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="ActorId" />
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Apellido" class="form-label"></label>
+        <input asp-for="Apellido" class="form-control" />
+        <span asp-validation-for="Apellido" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="FechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+        <input asp-for="FechaNacimiento" type="date" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Nacionalidad" class="form-label"></label>
+        <input asp-for="Nacionalidad" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>
